@@ -88,8 +88,31 @@ def rush_hour_entries():
     else:
       my_hash[key] = val
 
-  return my_hash
+  sorted_hash = sorted( my_hash.items(), key=operator.itemgetter(1) )
 
+  return sorted_hash
+
+
+
+
+def density_by_turnstile():
+  mta_hour_list = format_data_hour().items()
+  my_hash = {}
+
+  for index, row in enumerate(mta_hour_list):
+
+    if index == 10:
+      break
+
+
+    key = tuple([station_info[0], station_info[1], station_info[3]])
+
+    if key in my_hash:
+      my_hash[key].append(val)
+    else:
+      my_hash[key] = [ val ]
+
+  return my_hash
 
 
 
@@ -99,8 +122,4 @@ def rush_hour_entries():
 # ====================================
 
 rush_entries= rush_hour_entries()
-
-sorted_rush = sorted( rush_entries.items(), key=operator.itemgetter(1) )
-
-pprint( sorted_rush )
 

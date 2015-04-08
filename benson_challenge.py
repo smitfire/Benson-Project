@@ -4,6 +4,8 @@ from dateutil.relativedelta import *
 import calendar
 import dateutil.parser
 import matplotlib.pyplot as plt
+from pprint import pprint
+
 
 # CHALLENGE ONE
 def format_data():
@@ -75,9 +77,9 @@ def create_data_for_day_list():
 def format_data_day():
   my_hash={}
   data_hash= create_data_for_day_list()
-  for k,v in data_hash:
+  for k, v in data_hash.items():
     i=0
-    while i < len(v)-1:
+    while i < len(v) - 1:
       date = v[i][0]
       initial_count=v[i][1]
       next_count=v[i][1]
@@ -99,7 +101,7 @@ def split_date_and_time():
   vals = my_hash.values()
   return vals
 
-print format_data_hour()
+pprint(format_data_day())
 # print count_by_day()
 # print format_data_day()
 # print split_date_and_time()
