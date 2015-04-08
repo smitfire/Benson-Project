@@ -101,7 +101,11 @@ def split_date_and_time():
   vals = my_hash.values()
   return vals
 
+
+
 pprint(format_data_day())
 # print count_by_day()
 # print format_data_day()
 # print split_date_and_time()
+
+
