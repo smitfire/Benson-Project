@@ -120,6 +120,13 @@ textarea {
 }
 
 
+nav ul li{
+    display: inline-block;
+    width: 300px;
+    padding: 0 10px;
+    text-align: center;
+    outline:rgba(54,54,54,1) solid 1px;
+}
 
 
 
