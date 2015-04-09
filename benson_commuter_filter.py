@@ -181,12 +181,26 @@ def commuter_index():
 
   return sorted_hash
 
+
+def export_to_tsv():
+  my_hash_list = commuter_index()
+  output_file = open("commuter_index.tsv", "w")
+  output_file.write("Station\uCommuter Index")
+  for row in my_hash_list:
+    pprint(row)
+    output_file.write(row[0] + "\u" + row[1])
+
+
+
+
 # ====================================
 #           DRIVER CODE
 # ====================================
 
+export_to_tsv()
+
 # pprint(commuter_index())
-pprint(density_for_station())
+# pprint(density_for_station())
 # pprint(density_for_station())
 
 # pprint(rush_entries)
