@@ -185,10 +185,10 @@ def commuter_index():
 def export_to_tsv():
   my_hash_list = commuter_index()
   output_file = open("commuter_index.tsv", "w")
-  output_file.write("Station\uCommuter Index")
+  output_file.write("Station\tCommuter Index")
   for row in my_hash_list:
     pprint(row)
-    output_file.write(row[0] + "\u" + row[1])
+    output_file.write(row[0] + "\t" + row[1])
 
 
 
