@@ -123,7 +123,7 @@ def density_by_turnstile_hash():
   return my_hash
 
 
-def density_for_station():
+def station_density():
   turnstile_hash = density_by_turnstile_hash()
   my_hash = {}
 
@@ -188,12 +188,12 @@ def commuter_index():
 
 def limit_data(our_list):
   no_negs_list = remove_negative_data(our_list)
-  return no_negs_list[-20:]
+  return no_negs_list[-30:]
 
-def export_to_tsv():
+def export_to_tsv(the_list, file_name):
   # my_hash_list = remove_negative_data(commuter_index())
-  my_hash_list = limit_data(commuter_index())
-  output_file = open("commuter_index.tsv", "w")
+  my_hash_list = limit_data(the_list)
+  output_file = open(file_name, "w")
   output_file.write("letter\tfrequency\n")
   for row in my_hash_list:
     output_file.write(row[0] + "\t" + str(row[1]) + "\n")
@@ -205,7 +205,8 @@ def export_to_tsv():
 #           DRIVER CODE
 # ====================================
 
-export_to_tsv()
+commuter_index_export = export_to_tsv(commuter_index(), "commuter_index.tsv")
+station_density_export = export_to_tsv(station_density(), "station_density.tsv")
 
 # pprint(commuter_index())
 # pprint(type(commuter_index()))
