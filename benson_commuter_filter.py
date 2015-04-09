@@ -45,9 +45,13 @@ def format_data_hour():
     time_str = row[6] + " " + row[7]
     time = dateutil.parser.parse( time_str )
     if index == len(the_list)-1:
-      count = "Last Value Of The Day"
+      entry_count = 0
+      exit_count = 0
     else:
-      count = int(float(the_list[index+1][-2])) - int(float(row[-2]))
+      entry_count = int(float(the_list[index+1][-2])) - int(float(row[-2]))
+      exit_count = int(float(the_list[index+1][-1])) - int(float(row[-1]))
+
+    count = entry_count + exit_count
     val = [time,  count]
     if key in my_hash:
         my_hash[key].append( val )
