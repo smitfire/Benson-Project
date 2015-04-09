@@ -186,8 +186,13 @@ def commuter_index():
   return sorted_hash
 
 
+def limit_data(our_list):
+  no_negs_list = remove_negative_data(our_list)
+  return no_negs_list[-20:]
+
 def export_to_tsv():
-  my_hash_list = remove_negative_data(commuter_index())
+  # my_hash_list = remove_negative_data(commuter_index())
+  my_hash_list = limit_data(commuter_index())
   output_file = open("commuter_index.tsv", "w")
   output_file.write("letter\tfrequency\n")
   for row in my_hash_list:
