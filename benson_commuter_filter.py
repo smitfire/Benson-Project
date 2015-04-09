@@ -135,7 +135,7 @@ def density_for_station():
 
 
 
-def specified_time_entries(num, num2):
+def commuter_index():
   mta_hour_list = format_data_hour().items()
   my_hash = {}
 
@@ -148,21 +148,28 @@ def specified_time_entries(num, num2):
     first_hour = time_info[0][0].hour
 
     if first_hour == 1 or first_hour == 2 or first_hour == 3:
-      morning_val = time_info[num][1]
+      morning_val_rush = time_info[1][1]
+      morning_val_non_rush = time_info[2][1]
     elif first_hour == 0:
-      morning_val = time_info[num+1][1]
+      morning_val_rush = time_info[2][1]
+      morning_val_non_rush = time_info[3][1]
 
     if first_hour == 0 or first_hour == 1 or first_hour == 2:
-      evening_val = time_info[num2][1]
+      evening_val_rush = time_info[4][1]
+      evening_val_non_rush = time_info[5][1]
     elif first_hour == 3:
-      evening_val = time_info[num2-1][1]
+      evening_val_rush = time_info[3][1]
+      evening_val_non_rush = time_info[4][1]
 
-    val = evening_val + morning_val
+    val_rush = evening_val_rush + morning_val_rush
+    val_non_rush = evening_val_non_rush + morning_val_non_rush
+
+    commuter_index = val_rush - val_non_rush
 
     if key in my_hash:
-      my_hash[key] += val
+      my_hash[key] += commuter_index
     else:
-      my_hash[key] = val
+      my_hash[key] = commuter_index
 
   sorted_hash = sorted( my_hash.items(), key=operator.itemgetter(1) )
 
@@ -172,13 +179,12 @@ def specified_time_entries(num, num2):
 #           DRIVER CODE
 # ====================================
 
-rush_entries= specified_time_entries(1,4)
-non_rush_entries= specified_time_entries(2,5)
+pprint(commuter_index())
 
 # pprint(density_for_station())
 
 # pprint(rush_entries)
-pprint(non_rush_entries)
+# pprint(non_rush_entries)
 # density_by_turnstile_hash()
 # pprint( density_by_turnstile_hash() )
 
