@@ -37,7 +37,7 @@ def format_data():
 
 
 # CHALLENGE TWO
-def format_data_hour():
+def format_data_hour_tohei():
   my_hash={}
   the_list = fetch_data()
   for index, row in enumerate(the_list):
