@@ -150,7 +150,8 @@ def commuter_index():
     station_info = row[0]
     time_info = row[1]
 
-    key = tuple([station_info[0], station_info[1], station_info[3]])
+    # key = tuple([station_info[0], station_info[1], station_info[3]])
+    key = station_info[3]
     first_hour = time_info[0][0].hour
 
     if first_hour == 1 or first_hour == 2 or first_hour == 3:
