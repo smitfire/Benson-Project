@@ -101,6 +101,11 @@ def format_data_day():
 
   return my_hash
 
+
+
+
+
+
 def density_by_turnstile_hash():
   mta_day_list = format_data_day().items()
   my_hash = {}
@@ -123,6 +128,7 @@ def density_by_turnstile_hash():
   return my_hash
 
 
+
 def station_density():
   turnstile_hash = density_by_turnstile_hash()
   my_hash = {}
@@ -135,6 +141,23 @@ def station_density():
 
   sorted_hash = sorted( my_hash.items(), key=operator.itemgetter(1) )
   return sorted_hash
+
+
+def total_day():
+  turnstile_hash = density_by_turnstile_hash()
+  my_hash = {}
+
+  for index, row in enumerate(turnstile_hash.items()):
+
+    station_total= int(sum(row[1]))
+    my_hash[row[0]]=station_total
+
+  sorted_station = sorted( my_hash.items(), key=operator.itemgetter(1) )
+  return sorted_station
+
+
+
+
 
 
 def remove_negative_data(list):
@@ -207,12 +230,14 @@ def export_to_tsv(the_list, file_name):
 
 commuter_index_export = export_to_tsv(commuter_index(), "commuter_index.tsv")
 station_density_export = export_to_tsv(station_density(), "station_density.tsv")
+total_station_export = export_to_tsv(total_day(), "total_station_count.tsv")
 
 # pprint(commuter_index())
 # pprint(type(commuter_index()))
 # pprint(density_for_station())
-# pprint(density_for_station())
-
+# pprint(format_data_day())
+# pprint(total_day())
+# pprint(create_data_for_day_list())
 # pprint(rush_entries)
 # pprint(non_rush_entries)
 # density_by_turnstile_hash()
