@@ -102,34 +102,30 @@ def format_data_day():
   return my_hash
 
 
-pprint(format_data())
-
-
-
 def density_by_turnstile_hash():
   mta_day_list = format_data_day().items()
   my_hash = {}
 
   for index, row in enumerate(mta_day_list):
-    if index==100:
-      break
     station_info = row[0]
     # key = tuple([station_info[0], station_info[1], station_info[3]])
     key = station_info[3]
     vals = []
 
     for val in row[1]:
-      vals.append(val[1])
-    # pprint(vals)
+      vals.append(int(val[1]))
+
+    pprint(vals)
+    week_sum = sum(vals)
 
     if key in my_hash:
-      my_hash[key] + vals
+      my_hash[key].append( week_sum )
     else:
-      my_hash[key] = vals
+      my_hash[key] = [ week_sum ]
 
   return my_hash
 
-# pprint(density_by_turnstile_hash())
+
 
 def station_density():
   turnstile_hash = density_by_turnstile_hash()
@@ -148,7 +144,7 @@ def station_density():
   sorted_hash = sorted( my_hash.items(), key=operator.itemgetter(1) )
   return sorted_hash
 
-# station_density()
+
 
 def total_day():
   turnstile_hash = density_by_turnstile_hash()
@@ -164,9 +160,6 @@ def total_day():
 
 
 
-
-
-
 def remove_negative_data(list):
     new_list = [ row for row in list if row[1] >= 0 ]
     return new_list
@@ -178,8 +171,6 @@ def commuter_index():
   my_hash = {}
 
   for index, row in enumerate(mta_hour_list):
-    # if index == 100:
-    #     break
     station_info = row[0]
     time_info = row[1]
 
@@ -235,18 +226,6 @@ def export_to_tsv(the_list, file_name):
 #           DRIVER CODE
 # ====================================
 
-# commuter_index_export = export_to_tsv(commuter_index(), "commuter_index.tsv")
-# station_density_export = export_to_tsv(station_density(), "station_density.tsv")
-# total_station_export = export_to_tsv(total_day(), "total_station_count.tsv")
-
-# pprint(commuter_index())
-# pprint(type(commuter_index()))
-# pprint(density_for_station())
-# pprint(format_data_day())
-# pprint(total_day())
-# pprint(create_data_for_day_list())
-# pprint(rush_entries)
-# pprint(non_rush_entries)
-# density_by_turnstile_hash()
-# pprint( density_by_turnstile_hash() )
-
+commuter_index_export = export_to_tsv(commuter_index(), "commuter_index.tsv")
+station_density_export = export_to_tsv(station_density(), "station_density.tsv")
+total_station_export = export_to_tsv(total_day(), "total_station_count.tsv")
