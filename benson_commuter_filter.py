@@ -135,7 +135,42 @@ def density_for_station():
 
 
 
-def rush_hour_entries():
+# def rush_hour_entries():
+#   mta_hour_list = format_data_hour().items()
+#   my_hash = {}
+#
+#   for index, row in enumerate(mta_hour_list):
+#
+#     station_info = row[0]
+#     time_info = row[1]
+#
+#     key = tuple([station_info[0], station_info[1], station_info[3]])
+#     first_hour = time_info[0][0].hour
+#
+#     if first_hour == 1 or first_hour == 2 or first_hour == 3:
+#       morning_val = time_info[1][1]
+#     elif first_hour == 0:
+#       morning_val = time_info[2][1]
+#
+#     if first_hour == 0 or first_hour == 1 or first_hour == 2:
+#       evening_val = time_info[4][1]
+#     elif first_hour == 3:
+#       evening_val = time_info[3][1]
+#
+#     val = evening_val + morning_val
+#
+#     if key in my_hash:
+#       my_hash[key] += val
+#     else:
+#       my_hash[key] = val
+#
+#   sorted_hash = sorted( my_hash.items(), key=operator.itemgetter(1) )
+#
+#   return sorted_hash
+
+
+
+def rush_hour_entries(num, num2):
   mta_hour_list = format_data_hour().items()
   my_hash = {}
 
@@ -148,49 +183,14 @@ def rush_hour_entries():
     first_hour = time_info[0][0].hour
 
     if first_hour == 1 or first_hour == 2 or first_hour == 3:
-      morning_val = time_info[1][1]
+      morning_val = time_info[num][1]
     elif first_hour == 0:
-      morning_val = time_info[2][1]
+      morning_val = time_info[num+1][1]
 
     if first_hour == 0 or first_hour == 1 or first_hour == 2:
-      evening_val = time_info[4][1]
+      evening_val = time_info[num2][1]
     elif first_hour == 3:
-      evening_val = time_info[3][1]
-
-    val = evening_val + morning_val
-
-    if key in my_hash:
-      my_hash[key] += val
-    else:
-      my_hash[key] = val
-
-  sorted_hash = sorted( my_hash.items(), key=operator.itemgetter(1) )
-
-  return sorted_hash
-
-
-
-def non_rush_hour_entries():
-  mta_hour_list = format_data_hour().items()
-  my_hash = {}
-
-  for index, row in enumerate(mta_hour_list):
-
-    station_info = row[0]
-    time_info = row[1]
-
-    key = tuple([station_info[0], station_info[1], station_info[3]])
-    first_hour = time_info[0][0].hour
-
-    if first_hour == 1 or first_hour == 2 or first_hour == 3:
-      morning_val = time_info[1][1]
-    elif first_hour == 0:
-      morning_val = time_info[2][1]
-
-    if first_hour == 0 or first_hour == 1 or first_hour == 2:
-      evening_val = time_info[4][1]
-    elif first_hour == 3:
-      evening_val = time_info[3][1]
+      evening_val = time_info[num2-1][1]
 
     val = evening_val + morning_val
 
@@ -207,10 +207,10 @@ def non_rush_hour_entries():
 #           DRIVER CODE
 # ====================================
 
-rush_entries= rush_hour_entries()
-non_rush_entries= rush_hour_entries()
-
+rush_entries= rush_hour_entries(1,4)
+non_rush_entries= rush_hour_entries(2,5)
 # pprint(density_for_station())
+
 # pprint(rush_entries)
 pprint(non_rush_entries)
 # density_by_turnstile_hash()
