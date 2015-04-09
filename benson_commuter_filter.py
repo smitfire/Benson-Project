@@ -12,12 +12,10 @@ import operator
 
 # Collect and Store Data in Memory
 def fetch_data():
-  my_list=[]
   with open("turnstile_150404.txt", "r") as turn_data:
     reader=csv.reader(turn_data)
     reader.next()
-    for row in reader:
-      my_list.append(row)
+    my_list = [ [ cell.strip() for cell in row ] for row in reader]
 
   return my_list
 
