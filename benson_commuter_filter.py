@@ -102,7 +102,7 @@ def format_data_day():
   return my_hash
 
 
-
+pprint(format_data())
 
 
 
@@ -111,6 +111,8 @@ def density_by_turnstile_hash():
   my_hash = {}
 
   for index, row in enumerate(mta_day_list):
+    if index==100:
+      break
     station_info = row[0]
     # key = tuple([station_info[0], station_info[1], station_info[3]])
     key = station_info[3]
@@ -127,7 +129,7 @@ def density_by_turnstile_hash():
 
   return my_hash
 
-
+# pprint(density_by_turnstile_hash())
 
 def station_density():
   turnstile_hash = density_by_turnstile_hash()
@@ -137,11 +139,16 @@ def station_density():
     number_of_turnstiles = len(row[1])
     average= float(sum(row[1])) / number_of_turnstiles
     avg = float("{0:.2f}".format(average))
+
+    pprint(number_of_turnstiles)
+    pprint(avg)
+
     my_hash[row[0]]=avg
 
   sorted_hash = sorted( my_hash.items(), key=operator.itemgetter(1) )
   return sorted_hash
 
+# station_density()
 
 def total_day():
   turnstile_hash = density_by_turnstile_hash()
@@ -228,9 +235,9 @@ def export_to_tsv(the_list, file_name):
 #           DRIVER CODE
 # ====================================
 
-commuter_index_export = export_to_tsv(commuter_index(), "commuter_index.tsv")
-station_density_export = export_to_tsv(station_density(), "station_density.tsv")
-total_station_export = export_to_tsv(total_day(), "total_station_count.tsv")
+# commuter_index_export = export_to_tsv(commuter_index(), "commuter_index.tsv")
+# station_density_export = export_to_tsv(station_density(), "station_density.tsv")
+# total_station_export = export_to_tsv(total_day(), "total_station_count.tsv")
 
 # pprint(commuter_index())
 # pprint(type(commuter_index()))
