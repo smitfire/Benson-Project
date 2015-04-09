@@ -137,15 +137,19 @@ def density_for_station():
   return sorted_hash
 
 
-def remove_negative_data():
-  
+def remove_negative_data(list):
+    new_list = [ row for row in list if row[1] >= 0 ]
+    return new_list
+
+
 
 def commuter_index():
   mta_hour_list = format_data_hour().items()
   my_hash = {}
 
   for index, row in enumerate(mta_hour_list):
-
+    # if index == 100:
+    #     break
     station_info = row[0]
     time_info = row[1]
 
@@ -183,11 +187,10 @@ def commuter_index():
 
 
 def export_to_tsv():
-  my_hash_list = commuter_index()
+  my_hash_list = remove_negative_data(commuter_index())
   output_file = open("commuter_index.tsv", "w")
   output_file.write("letter\tfrequency\n")
   for row in my_hash_list:
-    pprint(row)
     output_file.write(row[0] + "\t" + str(row[1]) + "\n")
 
 
@@ -200,6 +203,7 @@ def export_to_tsv():
 export_to_tsv()
 
 # pprint(commuter_index())
+# pprint(type(commuter_index()))
 # pprint(density_for_station())
 # pprint(density_for_station())
 
