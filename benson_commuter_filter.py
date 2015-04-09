@@ -115,7 +115,6 @@ def density_by_turnstile_hash():
     for val in row[1]:
       vals.append(int(val[1]))
 
-    pprint(vals)
     week_sum = sum(vals)
 
     if key in my_hash:
@@ -135,9 +134,6 @@ def station_density():
     number_of_turnstiles = len(row[1])
     average= float(sum(row[1])) / number_of_turnstiles
     avg = float("{0:.2f}".format(average))
-
-    pprint(number_of_turnstiles)
-    pprint(avg)
 
     my_hash[row[0]]=avg
 
