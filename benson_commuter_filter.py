@@ -71,7 +71,9 @@ def create_data_for_day_list():
   for index, row in enumerate(the_list):
     key = tuple(row[0:4])
     time =  row[6]
-    cumalitive_count= int(float(row[-2]))
+    cumalitive_count_entry = int(float(row[-2]))
+    cumalitive_count_exit  = int(float(row[-1]))
+    cumalitive_count = cumalitive_count_entry + cumalitive_count_exit
 
     val = [time,  cumalitive_count]
     if key in my_hash:
@@ -183,8 +185,8 @@ def commuter_index():
 #           DRIVER CODE
 # ====================================
 
-pprint(commuter_index())
-
+# pprint(commuter_index())
+pprint(density_for_station())
 # pprint(density_for_station())
 
 # pprint(rush_entries)
