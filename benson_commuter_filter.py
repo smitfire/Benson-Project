@@ -138,7 +138,7 @@ def station_density():
     my_hash[row[0]]=avg
 
   sorted_hash = sorted( my_hash.items(), key=operator.itemgetter(1) )
-  return sorted_hash
+  return my_hash.items()
 
 
 
@@ -152,7 +152,7 @@ def total_day():
     my_hash[row[0]]=station_total
 
   sorted_station = sorted( my_hash.items(), key=operator.itemgetter(1) )
-  return sorted_station
+  return my_hash.items()
 
 
 
@@ -200,12 +200,22 @@ def commuter_index():
 
   sorted_hash = sorted( my_hash.items(), key=operator.itemgetter(1) )
 
-  return sorted_hash
+  return my_hash.items()
+
+
+def ultimate_index():
+  my_hash = {}
+  commuter_list = remove_negative_data(commuter_index())
+  density_list = remove_negative_data(station_density())
+  ultimate_list = zip(commuter_list, density_list)
+  comb = [ (row[0][0], row[0][1] * row[1][1] ) for row in ultimate_list ]
+  return comb
 
 
 def limit_data(our_list):
   no_negs_list = remove_negative_data(our_list)
-  return no_negs_list[-30:]
+  sorted_list = sorted(no_negs_list, key=operator.itemgetter(1))
+  return sorted_list[-30:]
 
 def export_to_tsv(the_list, file_name):
   # my_hash_list = remove_negative_data(commuter_index())
@@ -225,3 +235,4 @@ def export_to_tsv(the_list, file_name):
 commuter_index_export = export_to_tsv(commuter_index(), "commuter_index.tsv")
 station_density_export = export_to_tsv(station_density(), "station_density.tsv")
 total_station_export = export_to_tsv(total_day(), "total_station_count.tsv")
+ultimate_index_export = export_to_tsv(ultimate_index(), "ultimate.tsv")
