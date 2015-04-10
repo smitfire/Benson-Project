@@ -23,19 +23,19 @@
         <!-- Add your site or application content here -->
         <nav>
             <ul>
-                <li><h3><a href="index.html">HOME</a></h3></li>
-                <li><h3><a href="total_station.html">Total Count For Station</a></h3></li>
-                <li><h3><a href="station_density.html">Station Population Density</a></h3></li>
-                <li><h3><a href="commuter_index.html">Rush, Non Rush Hour Diff</a></h3></li>
-                <li><h3><a href="ultimate.html">Ultimate Index</a></h3></li>
+                <a href="index.html"><li><h3>HOME</h3></li></a>
+                <a href="total_station.html"><li><h3>Total Trafficist</h3></li></a>
+                <a href="station_density.html"><li><h3>Densiest Stations</h3></li></a>
+                <a href="commuter_index.html"><li class="active"><h3>Commuterist Stations</h3></li></a>
+                <a href="ultimate.html"><li><h3>Ultimate Indexist</h3></li></a>
             </ul>
         </nav>
 
-
+        <div id="graph"></div>
 <script>
 
 var margin = {top: 20, right: 20, bottom: 150, left: 80},
-    width = 1280 - margin.left - margin.right,
+    width = 1080 - margin.left - margin.right,
     height = 700 - margin.top - margin.bottom;
 
 var x = d3.scale.ordinal()
@@ -53,7 +53,7 @@ var yAxis = d3.svg.axis()
     .orient("left")
     .ticks(50, "");
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#graph").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
