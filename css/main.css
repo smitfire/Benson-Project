@@ -143,18 +143,18 @@ nav ul li{
 
 
 
-
-
 #graph{
     width: 960px;
     margin:0 auto;
 }
-
-
-
+nav ul li:hover,
 .active{
     background: rgba(54,54,54,0.1);
     color: rgba(54,54,54,1);
+}
+.centerit{
+    display: table;
+    margin:20px auto;
 }
 
 /* ==========================================================================
