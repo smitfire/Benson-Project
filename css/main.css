@@ -120,10 +120,23 @@ textarea {
 }
 
 
+nav ul h3{
+    font-size: 14px;
+}
+nav ul a{
+    color: white;
+    text-decoration: none;
+}
+nav ul{
+    display: table; padding:0;
+    margin: 20px auto;
+}
 nav ul li{
     display: inline-block;
-    width: 300px;
+    width: 200px;
+    background: rgba(54,54,54,0.8);
     padding: 0 10px;
+    margin: 0 10px;
     text-align: center;
     outline:rgba(54,54,54,1) solid 1px;
 }
@@ -132,8 +145,10 @@ nav ul li{
 
 
 
-
-
+#graph{
+    width: 960px;
+    margin:0 auto;
+}
 
 
 
